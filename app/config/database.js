@@ -1,9 +1,9 @@
 require('dotenv').config();
 const { Sequelize } = require('sequelize');
-console.log(process.env.HEROKU_BASE_URL)
 
 
     const db = new Sequelize(process.env.HEROKU_BASE_URL, {
+        define: { timestamps: false },
         dialectOptions: {
             ssl : {
                 require:true,
