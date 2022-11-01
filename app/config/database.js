@@ -4,7 +4,6 @@ const { Sequelize } = require('sequelize');
 if (process.env.HEROKU_BASE_URL){
 
     const db = new Sequelize(process.env.HEROKU_BASE_URL,{
-        dialect:"postgres",
         dialectOptions: {
             ssl : {
                 require:true,
