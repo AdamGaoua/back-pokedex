@@ -2,17 +2,34 @@ require('dotenv').config();
 const { Sequelize } = require('sequelize');
 
 
-    const db = new Sequelize(process.env.HEROKU_BASE_URL, {
-        define: { timestamps: false },
-        dialectOptions: {
-            ssl : {
-                require:true,
-                rejectUnauthorized:false
-            }
-        }
+    // const db = new Sequelize(process.env.HEROKU_BASE_URL, {
+    //     define: { timestamps: false },
+    //     dialectOptions: {
+    //         ssl : {
+    //             require:true,
+    //             rejectUnauthorized:false
+    //         }
+    //     }
 
-    } )
-    db
+    // } )
+    // db
+    // .authenticate()
+    // .then(()=>{
+    //     console.log("connexion sequelize réussie :)")
+    // })
+    // .catch((error)=>{
+    //     console.error(error)
+    // })
+    
+    // module.exports = db;
+
+
+    const sequelize = new Sequelize("pokedex", "postgres", "adam", {
+        host: 'localhost',
+        dialect: 'postgres',
+        define: { timestamps: false }
+    });
+    sequelize
     .authenticate()
     .then(()=>{
         console.log("connexion sequelize réussie :)")
@@ -20,24 +37,7 @@ const { Sequelize } = require('sequelize');
     .catch((error)=>{
         console.error(error)
     })
-    
-    module.exports = db;
+module.exports = sequelize;
 
-
-//     const sequelize = new Sequelize("pokedex", "postgres", "adam", {
-//         host: 'localhost',
-//         dialect: 'postgres',
-//         define: { timestamps: false }
-//     });
-//     sequelize
-//     .authenticate()
-//     .then(()=>{
-//         console.log("connexion sequelize réussie :)")
-//     .catch((error)=>{
-//         console.error(error)
-//     })
-// })
-// module.exports = sequelize;
-// }
 
 
